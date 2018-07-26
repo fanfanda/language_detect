@@ -13,7 +13,7 @@ def get_encoding(s):
     获得可能的编码方式，原理是有限自动机
     """
     result = chardet.detect(s)
-    return dict(set([(result['encoding'], result['confidence'])]))
+    return dict(set([(result['encoding'] if result['encoding'] else 'None', result['confidence'])]))
 
 # result = get_encoding(content.read())
 
