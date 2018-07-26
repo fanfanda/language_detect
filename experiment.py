@@ -23,7 +23,7 @@ all_data_x, all_data_y = zip(*all_data)
 
 #计数的n元模型
 print("生成CV")
-myvectorizer = CountVectorizer(ngram_range = (1,2), max_features = 1000, analyzer = 'char_wb')
+myvectorizer = CountVectorizer(ngram_range = (1,3), max_features = 1000, analyzer = 'char_wb')
 myvectorizer.fit(all_data_x)
 
 #文档转换为向量
@@ -75,10 +75,10 @@ print('accuracy_score: ', accuracy_score(y_test, lgb_result))
 print('recall_score: ', recall_score(y_test, lgb_result, average = 'micro'))
 print('f1_score: ', f1_score(y_test, lgb_result, average = 'weighted'))
 
-print("------------ n-gram dict -----------")
-print(myvectorizer.vocabulary_)
-print("------------ 词文档的向量表示 -----------")
-print(x_train.toarray())
+# print("------------ n-gram dict -----------")
+# print(myvectorizer.vocabulary_)
+# print("------------ 词文档的向量表示 -----------")
+# print(x_train.toarray())
 
 
 
