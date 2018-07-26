@@ -18,7 +18,7 @@ for label,language in enumerate(corpus):
 all_data_x, all_data_y = zip(*all_data)
 
 #计数的n元模型
-myvectorizer = CountVectorizer(ngram_range=(1,2), max_features=1000, analyzer = 'char_wb')
+myvectorizer = CountVectorizer(ngram_range = (1,2), max_features = 1000, analyzer = 'char_wb')
 myvectorizer.fit(all_data_x)
 
 #文档转换为向量
