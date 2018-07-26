@@ -28,7 +28,7 @@ all_data_vec_x = myvectorizer.transform(all_data_x)
 x_train, x_test, y_train, y_test = train_test_split(all_data_vec_x, all_data_y, test_size = 0.2, random_state = 2018)
 
 ############################################ 朴素贝叶斯 ############################################
-classifier=MultinomialNB()
+classifier = MultinomialNB()
 classifier.fit(x_train, y_train)
 
 NB_result = classifier.predict(x_test)
