@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, recall_score, f1_score
 import lightgbm as lgb
 import numpy as np
+import sys
 from sklearn.feature_extraction import DictVectorizer
 
 #测试四种语言的语种识别
@@ -20,10 +21,11 @@ for label,language in enumerate(corpus):
 all_data_x, all_data_y = zip(*all_data)
 
 
-
+ngram_range = (1,2)
+dicts_num = 2500
 #计数的n元模型
 print("生成CV")
-myvectorizer = CountVectorizer(ngram_range = (1,3), max_features = 1000, analyzer = 'char_wb')
+myvectorizer = CountVectorizer(ngram_range = ngram_range, max_features = dicts_num, analyzer = 'char_wb')
 myvectorizer.fit(all_data_x)
 
 #文档转换为向量
@@ -42,7 +44,11 @@ classifier.fit(x_train, y_train)
 
 NB_result = classifier.predict(x_test)
 
-
+print("------------ NaByes result -----------")
+print("ngram_range: ", ngram_range,"dicts_num: ", dicts_num)
+print('accuracy_score: ', accuracy_score(y_test, NB_result))
+print('recall_score: ', recall_score(y_test, NB_result, average = 'micro'))
+print('f1_score: ', f1_score(y_test, NB_result, average = 'weighted'))
 
 ############################################ lightgbm ############################################
 
