@@ -61,9 +61,9 @@ NB_result = classifier.predict(x_test)
 clf = lgb.LGBMClassifier(
         boosting_type = 'gbdt', num_leaves = 31, reg_alpha = 0.0, reg_lambda = 1,
         max_depth = -1, n_estimators = 2000, objective = 'softmax',
-        subsample=0.6, colsample_bytree = 0.7, subsample_freq = 1,
+        subsample = 0.6, colsample_bytree = 0.7, subsample_freq = 1,
         learning_rate = 0.05, random_state = 2018, n_jobs = -1, silent = 1)
-clf.fit(x_train.toarray(), y_train, eval_set=[(x_train.toarray() ,y_train),(x_test.toarray() , y_test)], eval_metric = 'multi_logloss',early_stopping_rounds = 200)
+clf.fit(x_train.toarray(), y_train, eval_set = [(x_train.toarray() ,y_train),(x_test.toarray() , y_test)], eval_metric = 'multi_logloss',early_stopping_rounds = 200)
 lgb_result = clf.predict(x_test.toarray())
 
 print("------------ NaByes result -----------")
@@ -74,6 +74,11 @@ print("------------ lgb result -----------")
 print('accuracy_score: ', accuracy_score(y_test, lgb_result))
 print('recall_score: ', recall_score(y_test, lgb_result, average = 'micro'))
 print('f1_score: ', f1_score(y_test, lgb_result, average = 'weighted'))
+
+print("------------ n-gram dict -----------")
+print(myvectorizer.vocabulary_)
+print("------------ 词文档的向量表示 -----------")
+print(x_train.toarray())
 
 
 
